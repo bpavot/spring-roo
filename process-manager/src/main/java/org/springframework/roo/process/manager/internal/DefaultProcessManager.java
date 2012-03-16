@@ -257,8 +257,9 @@ public class DefaultProcessManager extends
 
     private void logException(final Throwable t) {
         final Throwable root = ExceptionUtils.getRootCause(t);
+        final String messageFinal = t.getMessage();
         if (developmentMode) {
-            LOGGER.log(Level.FINE, root.getMessage(), root);
+            LOGGER.log(Level.FINE, messageFinal, root);
         }
         else {
             String message = root.getMessage();
@@ -272,7 +273,7 @@ public class DefaultProcessManager extends
                     message = root.getClass().getSimpleName();
                 }
             }
-            LOGGER.log(Level.FINE, message);
+            LOGGER.log(Level.FINE, messageFinal + message);
         }
     }
 

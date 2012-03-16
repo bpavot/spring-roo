@@ -55,7 +55,10 @@ public class JavaParserTypeResolutionService implements TypeResolutionService {
             return null;
         }
         catch (final ParseException e) {
-            throw new IllegalStateException(e);
+
+            Exception ex = new Exception("Error in file : "
+                    + fileIdentifier, e);
+            throw new IllegalStateException(ex);
         }
     }
 
@@ -65,9 +68,9 @@ public class JavaParserTypeResolutionService implements TypeResolutionService {
                 "The file doesn't exist");
         Validate.isTrue(new File(fileIdentifier).isFile(),
                 "The identifier doesn't represent a file");
+        String typeContents = "";
         try {
             final File file = new File(fileIdentifier);
-            String typeContents = "";
             try {
                 typeContents = FileUtils.readFileToString(file);
             }
@@ -85,7 +88,9 @@ public class JavaParserTypeResolutionService implements TypeResolutionService {
                     .toString());
         }
         catch (final ParseException e) {
-            throw new IllegalStateException(e);
+
+            Exception ex = new Exception("Error in file : " + fileIdentifier, e);
+            throw new IllegalStateException(ex);
         }
     }
 }

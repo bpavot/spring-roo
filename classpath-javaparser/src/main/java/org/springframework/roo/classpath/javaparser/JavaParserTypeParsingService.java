@@ -142,7 +142,9 @@ public class JavaParserTypeParsingService implements TypeParsingService {
                     typeLocationService).build();
         }
         catch (final ParseException e) {
-            throw new IllegalStateException(e);
+            Exception ex = new Exception("Error in file content : "
+                    + fileContents, e);
+            throw new IllegalStateException(ex);
         }
     }
 
